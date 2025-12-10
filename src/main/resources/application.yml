@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: instogram
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+server:
+  port: 2020
