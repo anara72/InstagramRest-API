@@ -9,23 +9,17 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Like {
     @Id
     @GeneratedValue(
-            generator = "like_gen",
-            strategy = GenerationType.SEQUENCE
+            strategy = GenerationType.SEQUENCE, generator = "like_gen"
     )
-    @SequenceGenerator(
-            name = "like_gen",
-            sequenceName = "like_seq",
-            allocationSize = 1)
-
+            @SequenceGenerator(name = "like_gen", sequenceName = "like_seq", allocationSize = 1)
     Long id;
-    Boolean isLiked;
+    boolean isLiked;
 
     @ManyToOne
     @JoinColumn(name ="user_id")
@@ -34,4 +28,9 @@ public class Like {
     @ManyToOne
     @JoinColumn(name="post_id")
     Post post;
+    @ManyToOne
+    @JoinColumn(name="comment_id")
+    Comment comment;
+
+
 }

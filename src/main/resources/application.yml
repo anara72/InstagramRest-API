@@ -7,7 +7,15 @@ spring:
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
+    open-in-view=false:
 server:
-  port: 2020
+  port: 8080
+
+security:
+  secret:
+    key: java
+  springdoc:
+    swagger-ui:
+      path: /api-docs/swagger-ui.html

@@ -1,26 +1,26 @@
 package peaksoft.instogram.service;
-import peaksoft.instogram.entity.User;
+import peaksoft.instogram.dto.SimpleResponse;
+import peaksoft.instogram.dto.userDto.request.UserRequest;
+import peaksoft.instogram.dto.userDto.response.UserProfileResponse;
+import peaksoft.instogram.dto.userDto.request.UserUpdateRequest;
+import peaksoft.instogram.dto.userDto.response.UserResponse;
+import peaksoft.instogram.dto.userDto.response.UserResponseById;
+import peaksoft.instogram.dto.userDto.response.UserUpdateResponse;
+
 import java.util.List;
 
 public interface UserService {
-
-    User saveUser(User user);
-
-    List<User> getAllUser();
-
-
-    User getUserById(Long id);
-
-    User updateUser(Long id,User user);
-
-    String deleteUserById(Long id);
-
-//    User autenicate(String email, String password);
-
-//    User userProfile(Long id);
-
-
-
-
-
+    SimpleResponse saveUser(UserRequest userRequest);
+    UserResponseById getUserById(Long id);
+    List<UserResponse> getAllUsers();
+    SimpleResponse updateUser(Long id, UserUpdateRequest userUpdateRequest);
+    SimpleResponse deleteUserById(Long id);
+    UserProfileResponse userProfile(Long id);
 }
+
+
+
+
+
+
+

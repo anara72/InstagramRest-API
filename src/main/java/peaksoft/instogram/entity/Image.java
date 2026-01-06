@@ -15,19 +15,14 @@ import lombok.experimental.FieldDefaults;
 public class Image {
     @Id
     @GeneratedValue(
-            generator = "image_gen",
-            strategy = GenerationType.SEQUENCE
+            strategy = GenerationType.SEQUENCE, generator = "image_gen"
     )
-    @SequenceGenerator(
-            name = "image_gen",
-            sequenceName = "image_seq",
-            allocationSize = 1)
-
+    @SequenceGenerator(name = "image_gen", sequenceName = "image_seq", allocationSize = 1)
     Long id;
     String imagUrl;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Post post;
+     Post post;
 
 }

@@ -9,8 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "followers")
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -21,23 +21,27 @@ import java.util.List;
 public class Follower {
     @Id
     @GeneratedValue(
-            generator = "follower_gen",
-            strategy = GenerationType.SEQUENCE
+            strategy = GenerationType.SEQUENCE, generator = "follower_gen"
     )
     @SequenceGenerator(
             name = "follower_gen",
             sequenceName = "follower_seq",
             allocationSize = 1)
     Long id;
-    @ElementCollection
-     List<Long> subscibers = new ArrayList<>();
 
-    @ElementCollection
-    private List<Long> subscriptions=new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "subscription",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "subscription_id")
+    )
+    List<User> subscriptions =  new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "subscribers", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
+    List<User> subscribers = new ArrayList<>();
 
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne
+     User user;
 
 }
